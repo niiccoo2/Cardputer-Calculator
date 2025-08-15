@@ -1,7 +1,4 @@
 #include "M5Cardputer.h"
-#include "USBHIDKeyboard.h"
-
-USBHIDKeyboard Keyboard;
 
 void setup() {
     auto cfg = M5.config();
