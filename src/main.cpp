@@ -18,33 +18,45 @@ void setup() {
     M5Cardputer.Display.setTextSize(1); // Set the text back to 1 after drawing ^^^
 }
 
+String getUserInput() {
+    String equation = "";
+    while (true)
+      {
+          M5Cardputer.update();
+          
+          
+          if (M5Cardputer.Keyboard.isChange()) {
+              if (M5Cardputer.Keyboard.isPressed()) {
+                  Keyboard_Class::KeysState status = M5Cardputer.Keyboard.keysState();
 
+                  if (status.enter) {
+                    return equation;
+                  }
 
-String equation = "";
+                  for (auto i : status.word) {
+                      if (equation.length() >= 10) { // Use >= becuase it checks BEFORE it adds a new char
+                        equation = equation; // Do nothing so max input is 10
+                      } else if (equation != "") {
+                        equation = equation + i;
+                      } else {
+                          equation += i;
+                      }
+                  }
+
+                  M5Cardputer.Display.clear();
+                  M5Cardputer.Display.drawString(
+                      equation, M5Cardputer.Display.width() / 2,
+                      M5Cardputer.Display.height() / 2);
+                  
+                }
+          }
+      } 
+}
 
 void loop() {
-    M5Cardputer.update();
-    
-    
-    if (M5Cardputer.Keyboard.isChange()) {
-        if (M5Cardputer.Keyboard.isPressed()) {
-            Keyboard_Class::KeysState status = M5Cardputer.Keyboard.keysState();
-          
-            for (auto i : status.word) {
-                if (equation.length() >= 10) { // Use >= becuase it checks BEFORE it adds a new char
-                  equation = equation; // Do nothing so max input is 10
-                } else if (equation != "") {
-                  equation = equation + i;
-                } else {
-                    equation += i;
-                }
-            }
-
-            M5Cardputer.Display.clear();
-            M5Cardputer.Display.drawString(
-                equation, M5Cardputer.Display.width() / 2,
-                M5Cardputer.Display.height() / 2);
-            
-          }
-    }
+    String equation = "Got" + getUserInput();
+    M5Cardputer.Display.clear();
+    M5Cardputer.Display.drawString(
+          equation, M5Cardputer.Display.width() / 2,
+          M5Cardputer.Display.height() / 2);
 }
