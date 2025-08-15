@@ -19,6 +19,7 @@ void setup() {
 
 void waitForEnter() {
   while (true) {
+    M5Cardputer.update(); // Need this so that it can refresh the pressed keys
     if (M5Cardputer.Keyboard.isChange()) {
       if (M5Cardputer.Keyboard.isPressed()) {
           Keyboard_Class::KeysState status = M5Cardputer.Keyboard.keysState();
@@ -31,6 +32,7 @@ void waitForEnter() {
 }
 
 String getUserInput() {
+    M5Cardputer.Display.clear();
     M5Cardputer.Display.drawString("Enter equation",
         M5Cardputer.Display.width() / 2,
         M5Cardputer.Display.height() / 2);
@@ -75,4 +77,5 @@ void loop() {
     M5Cardputer.Display.drawString(
           equation, M5Cardputer.Display.width() / 2,
           M5Cardputer.Display.height() / 2);
+    waitForEnter();
 }
