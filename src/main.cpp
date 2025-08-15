@@ -12,7 +12,7 @@ void setup() {
     M5Cardputer.Display.setTextDatum(middle_center);
     M5Cardputer.Display.setFont(&fonts::Orbitron_Light_24);
     M5Cardputer.Display.setTextSize(1);
-    M5Cardputer.Display.drawString("USB Keyboard",
+    M5Cardputer.Display.drawString("Cardputer Calculator",
                                    M5Cardputer.Display.width() / 2,
                                    M5Cardputer.Display.height() / 2);
 }
