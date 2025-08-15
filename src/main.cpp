@@ -40,11 +40,5 @@ void loop() {
                 M5Cardputer.Display.height() / 2);
             
           }
-        // } else {
-        //     M5Cardputer.Display.clear();
-        //     M5Cardputer.Display.drawString("USB Keyboard",
-        //                                    M5Cardputer.Display.width() / 2,
-        //                                    M5Cardputer.Display.height() / 2);
-        // }
     }
 }
