@@ -17,6 +17,19 @@ void setup() {
     
 }
 
+void waitForEnter() {
+  while (true) {
+    if (M5Cardputer.Keyboard.isChange()) {
+      if (M5Cardputer.Keyboard.isPressed()) {
+          Keyboard_Class::KeysState status = M5Cardputer.Keyboard.keysState();
+          if (status.enter) {
+            return;
+          }
+      }
+    }
+  }
+}
+
 String getUserInput() {
     M5Cardputer.Display.drawString("Enter equation",
         M5Cardputer.Display.width() / 2,
