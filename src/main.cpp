@@ -17,16 +17,20 @@ void setup() {
     
 }
 
-void waitForEnter() {
+void waitForEnter() { // TODO: Fix debouncing
+  bool hasBeenReleased = false;
   while (true) {
     M5Cardputer.update(); // Need this so that it can refresh the pressed keys
     if (M5Cardputer.Keyboard.isChange()) {
-      if (M5Cardputer.Keyboard.isPressed()) {
+      //if (M5Cardputer.Keyboard.isPressed()) {
           Keyboard_Class::KeysState status = M5Cardputer.Keyboard.keysState();
-          if (status.enter) {
+          if (!status.enter) {
+            hasBeenReleased = true;
+          }
+          if (status.enter and hasBeenReleased) {
             return;
           }
-      }
+      //}
     }
   }
 }
