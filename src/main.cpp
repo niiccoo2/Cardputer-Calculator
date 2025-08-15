@@ -1,4 +1,3 @@
-//#include <M5Unified.h>
 #include "M5Cardputer.h"
 #include "USBHIDKeyboard.h"
 
@@ -11,14 +10,18 @@ void setup() {
     M5Cardputer.Display.setTextColor(GREEN);
     M5Cardputer.Display.setTextDatum(middle_center);
     M5Cardputer.Display.setFont(&fonts::Orbitron_Light_24);
-    M5Cardputer.Display.setTextSize(0.75);
-    M5Cardputer.Display.drawString("Cardputer Calculator",
+    M5Cardputer.Display.setTextSize(1);
+    M5Cardputer.Display.drawString("Enter equation",
                                    M5Cardputer.Display.width() / 2,
                                    M5Cardputer.Display.height() / 2);
-    M5Cardputer.Display.setTextSize(1); // Set the text back to 1 after drawing ^^^
+    
 }
 
 String getUserInput() {
+    M5Cardputer.Display.drawString("Enter equation",
+        M5Cardputer.Display.width() / 2,
+        M5Cardputer.Display.height() / 2);
+    
     String equation = "";
     while (true)
       {
@@ -54,7 +57,7 @@ String getUserInput() {
 }
 
 void loop() {
-    String equation = "Got" + getUserInput();
+    String equation = "Got: " + getUserInput();
     M5Cardputer.Display.clear();
     M5Cardputer.Display.drawString(
           equation, M5Cardputer.Display.width() / 2,
